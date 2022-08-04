@@ -1,0 +1,35 @@
+/* match image */
+@mixin match-image {
+  height: auto;
+  object-fit: contain;
+  @content;
+}
+
+/* section heading */
+@mixin section-heading {
+  color: #fcba03;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  @content;
+  &::before {
+    content: "";
+    background: url("ico_front02.png") no-repeat;
+    display: inline-block;
+    width: 45px;
+    height: 26px;
+    vertical-align: sub;
+    margin-right: 5px;
+  }
+}
+
+/* ranking icon */
+@mixin set-rank-icon($icon) {
+  content: "";
+  background: url($icon) no-repeat;
+  background-size: contain;
+  display: inline-block;
+  vertical-align: -6px;
+  width: 25px;
+  height: 25px;
+}

@@ -1,0 +1,195 @@
+@import "_basic";
+@import "_mixin";
+
+/* header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 5px #b8b8b8;
+  z-index: 10;
+  &__nav {
+    justify-content: space-between;
+    padding: 15px 0;
+    align-items: center;
+    height: 80px;
+  }
+  &__menu--before {
+    gap: 20px;
+  }
+  &__icon {
+    @include match-image();
+    width: 35px;
+  }
+  &__logo {
+    @include match-image();
+    width: 182px;
+  }
+  &__menu--after {
+    align-items: center;
+    gap: 20px;
+  }
+  &__item--first {
+    font-size: 1.2rem;
+    color: #c8c8c8;
+    &::before {
+      content: "";
+      background-image: url(ico_cat.png);
+      background-repeat: round;
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      vertical-align: -6px;
+      margin-right: 5px;
+    }
+  }
+  &__item--second {
+    font-size: 1.2rem;
+    color: #c8c8c8;
+    &::before {
+      content: "";
+      background-image: url(ico_search.png);
+      background-repeat: round;
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      vertical-align: -6px;
+      margin-right: 5px;
+    }
+  }
+  &__link {
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: $basic-color;
+    padding: 10px 15px;
+  }
+}
+
+/* slider */
+.slider {
+  &__outer {
+    margin-top: 80px;
+  }
+}
+
+/* sub header */
+.sub-header {
+  background-color: #f6d952;
+  padding: 10px 0;
+  &__flex {
+    justify-content: space-between;
+  }
+  &__text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    span {
+      font-size: 1.46em;
+    }
+    &::before {
+      content: "";
+      background-image: url(ico_front01.png);
+      background-repeat: round;
+      display: inline-block;
+      width: 40px;
+      height: 30px;
+      vertical-align: -6px;
+      margin-right: 5px;
+    }
+  }
+  &__link {
+    font-size: 1.4rem;
+    color: #fff;
+    background-color: $basic-color;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 10px;
+  }
+}
+
+/* main */
+.main {
+  background: url("bg_front01.png") repeat;
+  padding-top: 15px;
+}
+
+/* ranking */
+.ranking {
+  margin-top: 30px;
+  &__heading {
+    @include section-heading();
+  }
+  &__flex {
+    gap: 30px;
+  }
+  &__flex-item {
+    width: 50%;
+    background-color: #fff;
+    padding: 20px 10px;
+    border-radius: 10px;
+  }
+  &__flex-heading {
+    @include section-heading();
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    &.before {
+      &::before {
+        background: url("ico_front03.png") no-repeat;
+        background-size: contain;
+        width: 30px;
+        height: 30px;
+      }
+    }
+    &.after {
+      &::before {
+        background: url("ico_front04.png") no-repeat;
+        background-size: contain;
+        width: 30px;
+        height: 30px;
+        vertical-align: -7px;
+      }
+    }
+  }
+  &__item {
+    gap: 20px;
+  }
+  &__image {
+    width: 25%;
+  }
+  &__data {
+    width: 75%;
+  }
+  &__title {
+    font-size: 1.4rem;
+    color: #666;
+    font-weight: bold;
+    margin: 0;
+    &.first {
+      &::before {
+        @include set-rank-icon("ico_front05.png");
+      }
+    }
+  }
+  &__score {
+    font-size: 1.5rem;
+    color: #d3381c;
+    font-weight: bold;
+    &::before {
+      content: "";
+      background: url("/assets/ico_front08.png") no-repeat;
+      background-size: contain;
+      vertical-align: -1px;
+      margin-right: 4px;
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+    }
+  }
+  &__text {
+    font-size: 1.2rem;
+    color: #666;
+  }
+}

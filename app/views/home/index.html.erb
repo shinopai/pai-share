@@ -1,0 +1,88 @@
+<!-- page title -->
+<%= render partial: 'shared/page_title', locals: { page_title:
+'口コミ・レビュー・ランキング・新商品情報【パイビュー】' } %>
+
+<!-- header -->
+<%= render partial: 'shared/header' %>
+
+<!-- slider -->
+<div class="slider__outer wrap">
+  <ul class="slider">
+    <li><%= link_to image_tag('img_front01.jpg'), '#' %></li>
+    <li><%= link_to image_tag('img_front02.png'), '#' %></li>
+    <li><%= link_to image_tag('img_front03.png'), '#' %></li>
+    <li><%= link_to image_tag('img_front04.png'), '#' %></li>
+    <li><%= link_to image_tag('img_front05.png'), '#' %></li>
+    <li><%= link_to image_tag('img_front06.png'), '#' %></li>
+    <li><%= link_to image_tag('img_front07.png'), '#' %></li>
+  </ul>
+</div>
+
+<!-- sub-header -->
+<div class="sub-header">
+  <div class="wrap">
+    <div class="sub-header__flex flex">
+      <p class="sub-header__text">現在のレビュー数<span>0</span>件</p>
+      <%= link_to '', class: 'sub-header__link' do %> 無料登録&レビューで<br />100ポイント
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- main -->
+<main class="main">
+  <div class="wrap">
+    <!-- grades -->
+    <figure class="grades__image">
+      <%= link_to image_tag('img_front08.png'), '#' %>
+    </figure>
+
+    <!-- ranking -->
+    <section class="ranking">
+      <h2 class="ranking__heading">注目ランキング</h2>
+      <div class="ranking__flex flex">
+        <div class="ranking__flex-item before">
+          <h3 class="ranking__flex-heading before">総合評価ランキング</h3>
+          <div class="ranking__item flex">
+            <div class="ranking__image">
+              <%= link_to image_tag('img_front09.jpg'), '#' %>
+            </div>
+            <div class="ranking__data">
+              <h4 class="ranking__title first">
+                サントリー天然水 特製レモンスカッシュ
+              </h4>
+              <span class="ranking__score">4.60</span>
+              <p class="ranking__text">
+                強炭酸でレモンの酸味が来た後に皮の苦味を感じられる
+                その後はミントの爽快感があり...
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="ranking__flex-item after">
+          <h3 class="ranking__flex-heading after">レビュー数ランキング</h3>
+          <div class="ranking__item flex">
+            <div class="ranking__image">
+              <%= link_to image_tag('img_front14.jpg'), '#' %>
+            </div>
+            <div class="ranking__data">
+              <h4 class="ranking__title first">
+                －196℃ ストロングゼロ 冷凍みかん
+              </h4>
+              <span class="ranking__score">3.86</span>
+              <p class="ranking__text">
+                みかんやオレンジではなく冷凍みかんというところが気になって購入しました。アルコール度...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- slick -->
+<script
+  type="text/javascript"
+  src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+></script>
