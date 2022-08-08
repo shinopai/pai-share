@@ -2,13 +2,17 @@
   <div class="wrap">
     <nav class="header__nav flex">
       <div class="header__menu--before flex">
-        <%= link_to image_tag('ico_menu.gif', class: 'header__icon'), '' %>
+        <%= link_to image_tag('ico_menu.gif', class: 'header__icon'), '#' %>
         <h1><%= link_to image_tag('logo_site.png', class: 'header__logo'), root_path %></h1>
       </div>
       <ul class="header__menu--after flex">
         <li class="header__item--first">カテゴリからさがす</li>
         <li class="header__item--second">キーワードでさがす</li>
-        <li><%= link_to 'ログイン・新規登録', '', class: 'header__link' %></li>
+        <% if user_signed_in? %>
+        <li><%= link_to current_user.name + 'さん', user_profile_path(current_user), class: 'header__link--profile' %></li>
+        <% else %>
+        <li><%= link_to 'ログイン・新規登録', new_user_session_path, class: 'header__link' %></li>
+        <% end %>
       </ul>
     </nav>
   </div>

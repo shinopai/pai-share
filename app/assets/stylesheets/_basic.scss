@@ -32,11 +32,28 @@ figure {
 }
 .wrap {
   padding: 0 10%;
+  margin: 0 auto;
   max-width: 1200px;
 }
 .section-padding {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+.notice {
+  background-color: #7df16d;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  padding: 10px;
+}
+.alert {
+  background-color: #ed7644;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  padding: 10px;
 }
 
 /* variables */

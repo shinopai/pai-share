@@ -82,3 +82,24 @@ gem 'jsbundling-rails'
 
 # managemant auth user
 gem 'devise'
+
+# create admin page easily
+gem 'rails_admin'
+
+# authentication of admin page
+gem 'cancancan'
+
+# translate devise to japanese
+gem 'devise-i18n'
+
+# save image easily
+gem 'carrierwave'
+
+# generate dummy data
+gem 'faker'
+
+# pagination
+gem 'kaminari', '~> 0.17.0'
+
+# make rails console more comfortable
+gem 'pry-rails'

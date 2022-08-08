@@ -1,0 +1,49 @@
+<!-- page title -->
+<%= render partial: 'shared/page_title', locals: { page_title: '新規会員登録' } %>
+
+<!-- header -->
+<%= render partial: 'shared/header' %>
+
+<!-- main -->
+<main class="main">
+  <div class="wrap">
+    <%= form_for(resource, as: resource_name, html: { class: 'form' }, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <h2 class="form__heading">会員登録</h2>
+    <div class="form__item">
+      <%= f.text_field :name, autofocus: true, autocomplete: "name",
+      placeholder: 'ユーザー名', class: 'form__input-text' %>
+    </div>
+    <div class="form__item">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",
+      placeholder: 'メールアドレス', class: 'form__input-text' %>
+    </div>
+    <div class="form__item">
+      <%= f.password_field :password, autocomplete: "current-password",
+      placeholder: 'パスワード', class: 'form__input-text' %>
+    </div>
+    <div class="form__item">
+      <%= f.password_field :password_confirmation, autocomplete: "current-password",
+      placeholder: 'パスワード確認', class: 'form__input-text' %>
+    </div>
+    <div class="form__item flex">
+      <% arr = get_all_collection(Age) %>
+      <% arr2 = get_all_collection(Gender) %>
+      <%= collection_select(:age, :id, arr, :id, :title, { prompt: "年代を選択してください"}, { class: 'form__select' }) %>
+      <%= collection_select(:gender, :id, arr2, :id, :title, { prompt: "性別を選択してください"}, { class: 'form__select' }) %>
+    </div>
+    <div class="form__item flex">
+      <% arr3 = get_all_collection(Residence) %>
+      <%= collection_select(:residence, :id, arr3, :id, :name, { prompt: "居住地を選択してください"}, { class: 'form__select' }) %>
+    </div>
+    <div class="form__item image">
+      <%= f.label :image, 'ユーザー画像', class: 'form__label' %><br>
+      <%= f.file_field :image, class: 'form__input-file' %>
+    </div>
+    <div class="form__item">
+      <%= f.submit "登録", class: 'form__submit' %>
+    </div>
+    <%= render 'devise/shared/links' %>
+    <% end %>
+  </div>
+</main>

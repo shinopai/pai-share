@@ -1,0 +1,30 @@
+<!-- page title -->
+<%= render partial: 'shared/page_title', locals: { page_title:
+'新商品' } %>
+
+<!-- header -->
+<%= render partial: 'shared/header' %>
+
+<!--main -->
+<main class="main">
+  <div class="wrap">
+    <div class="items flex">
+      <% @items.each do |item| %>
+      <div class="items__item">
+        <%= link_to item_path(item) do %>
+        <div class="items__image">
+          <%= image_tag item.image.url %>
+        </div>
+        <h4 class="items__title"><%= item.name %></h4>
+        <% end %>
+        <span class="items__date"><%= item.release_date %></span>
+        <i class="fas fa-heart items__icon"></i>
+      </div>
+      <% end %>
+    </div>
+    <%= paginate @items %>
+  </div>
+</main>
+
+<!-- footer -->
+<%= render partial: 'shared/footer' %>

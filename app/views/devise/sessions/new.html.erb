@@ -1,0 +1,31 @@
+<!-- page title -->
+<%= render partial: 'shared/page_title', locals: { page_title: 'ログイン' } %>
+
+<!-- header -->
+<%= render partial: 'shared/header' %>
+
+<!-- main -->
+<main class="main">
+  <div class="wrap">
+    <%= form_for(resource, as: resource_name, html: {class: 'form'}, url:
+    session_path(resource_name)) do |f| %>
+    <h2 class="form__heading">ログイン</h2>
+    <div class="form__item">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",
+      placeholder: 'メールアドレス', class: 'form__input-text' %>
+    </div>
+    <div class="form__item">
+      <%= f.password_field :password, autocomplete: "current-password",
+      placeholder: 'パスワード', class: 'form__input-text' %>
+    </div>
+    <div class="form__item">
+      <%= f.submit "ログイン", class: 'form__submit' %>
+    </div>
+    <%= render 'devise/shared/links' %>
+    <div class="form__item">
+      <%= link_to '新規登録はこちら', new_user_registration_path, class:
+      'form__link--signup' %>
+    </div>
+    <% end %>
+  </div>
+</main>

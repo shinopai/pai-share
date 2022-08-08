@@ -1,0 +1,41 @@
+<!-- page title -->
+<%= render partial: 'shared/page_title', locals: { page_title: @item.name +
+'の商品ページ' } %>
+
+<!-- header -->
+<%= render partial: 'shared/header' %>
+
+<!--main -->
+<main class="main">
+  <div class="wrap">
+    <div class="item-dtl flex">
+      <div class="item-dtl--before flex">
+        <div>
+          <div class="item-dtl__image--item">
+            <% if @item.image? %> <%= image_tag @item.image.url %> <% end %>
+          </div>
+          <i class="fas fa-heart item-dtl__icon"></i>
+        </div>
+        <div>
+          <%= link_to category_list_path(@item.category.id) do %>
+          <span class="item-dtl__label"><%= @item.category.name %></span>
+          <% end %>
+          <span class="item-dtl__date"
+            >登録日:&nbsp;<%= @item.created_at.strftime('%Y.%m.%d') %></span
+          >
+        </div>
+        <h3 class="item-dtl__title"><%= @item.name %></h3>
+        <%= link_to 'レビューする', '#', class: 'item-dtl__link' %>
+      </div>
+      <div class="item-dtl--after">
+        <h3 class="item-dtl__heading">0件のレビュー</h3>
+        <figure class="item-dtl__image">
+          <%= image_tag 'img_item01.png' %>
+        </figure>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- footer -->
+<%= render partial: 'shared/footer' %>

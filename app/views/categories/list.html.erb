@@ -1,0 +1,29 @@
+<!-- page title -->
+<%= render partial: 'shared/page_title', locals: { page_title: @category.name +
+'のカテゴリーページ' } %>
+
+<!-- header -->
+<%= render partial: 'shared/header' %>
+
+<!--main -->
+<main class="main">
+  <div class="wrap">
+    <div class="items flex">
+      <% @category.items.each do |cat| %>
+      <div class="items__item">
+        <%= link_to item_path(cat) do %>
+        <div class="items__image">
+          <%= image_tag cat.image.url %>
+        </div>
+        <h4 class="items__title"><%= cat.name %></h4>
+        <% end %>
+        <span class="items__date"><%= cat.release_date %></span>
+        <i class="fas fa-heart items__icon"></i>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</main>
+
+<!-- footer -->
+<%= render partial: 'shared/footer' %>

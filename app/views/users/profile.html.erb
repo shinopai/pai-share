@@ -1,0 +1,55 @@
+<!-- page title -->
+<%= render partial: 'shared/page_title', locals: { page_title: @user.name +
+'さんのプロフィールデータ' } %>
+
+<!-- header -->
+<%= render partial: 'shared/header' %>
+
+<!--main -->
+<main class="main">
+  <div class="wrap">
+    <div class="profile flex">
+      <div class="profile--before flex">
+        <div class="profile__upper flex">
+          <figure class="profile__image--user">
+            <% if @user.image? %> <%= image_tag @user.image.url %> <% end %>
+          </figure>
+          <div class="profile__numbers flex">
+            <div class="flex">
+              <div>
+                <span class="profile__number">334</span>
+                <span class="profile__ruby">レビュー</span>
+              </div>
+              <div>
+                <span class="profile__number">0</span>
+                <span class="profile__ruby">フォロー</span>
+              </div>
+              <div>
+                <span class="profile__number">1</span>
+                <span class="profile__ruby">フォロワー</span>
+              </div>
+            </div>
+            <div class="profile__button">フォローする</div>
+          </div>
+        </div>
+        <div>
+          <h3 class="profile__name"><%= @user.name %></h3>
+          <p>
+            <%= @user.age.title %>/<%= @user.gender.title %>/<%=
+            @user.residence.name %>
+          </p>
+        </div>
+      </div>
+      <div class="profile--after">
+        <h3 class="profile__heading active">レビュー</h3>
+        <h3 class="profile__heading">お気に入り商品</h3>
+        <figure class="profile__image">
+          <%= image_tag 'img_item01.png' %>
+        </figure>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- footer -->
+<%= render partial: 'shared/footer' %>
