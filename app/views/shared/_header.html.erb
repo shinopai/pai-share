@@ -3,17 +3,38 @@
     <nav class="header__nav flex">
       <div class="header__menu--before flex">
         <%= link_to image_tag('ico_menu.gif', class: 'header__icon'), '#' %>
-        <h1><%= link_to image_tag('logo_site.png', class: 'header__logo'), root_path %></h1>
+        <h1>
+          <%= link_to image_tag('logo_site.png', class: 'header__logo'),
+          root_path %>
+        </h1>
       </div>
       <ul class="header__menu--after flex">
-        <li class="header__item--first">カテゴリからさがす</li>
+        <li class="header__item--first"><%= link_to 'カテゴリからさがす', categories_path %></li>
         <li class="header__item--second">キーワードでさがす</li>
         <% if user_signed_in? %>
-        <li><%= link_to current_user.name + 'さん', user_profile_path(current_user), class: 'header__link--profile' %></li>
+        <li>
+          <%= link_to current_user.name + 'さん',
+          user_profile_path(current_user), class: 'header__link--profile' %>
+        </li>
         <% else %>
-        <li><%= link_to 'ログイン・新規登録', new_user_session_path, class: 'header__link' %></li>
+        <li>
+          <%= link_to 'ログイン・新規登録', new_user_session_path, class:
+          'header__link' %>
+        </li>
         <% end %>
       </ul>
     </nav>
   </div>
 </header>
+
+<!-- search form -->
+<div class="search-form">
+  <div class="wrap">
+    <div class="search-form__inner flex">
+      <%= search_form_for @q_header, url: search_items_path, class:
+      'search-form__form' do |search| %> <%= search.search_field :name_or_description_gt, class: 'search-form__textfield' %> <%=
+      search.submit '検索', class: 'search-form__submit' %> <% end %>
+      <p class="search-form__text">キャンセル</p>
+    </div>
+  </div>
+</div>

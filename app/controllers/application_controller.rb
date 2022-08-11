@@ -1,4 +1,9 @@
 class ApplicationController < ActionController::Base
+  before_action :set_q_header
+
+  def set_q_header
+    @q_header = Item.ransack(params[:q])
+  end
   # before_action :require_login
 
   # private

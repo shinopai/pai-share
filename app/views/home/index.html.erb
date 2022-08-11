@@ -16,7 +16,8 @@
       <li class="drawer__menu"><%= link_to 'トップ', root_path %></li>
       <% if user_signed_in? %>
       <li class="drawer__menu">
-        <%= link_to current_user.name + 'さん', '#' %>
+        <%= link_to current_user.name + 'さん', user_profile_path(current_user)
+        %>
       </li>
       <% else %>
       <li class="drawer__menu">
@@ -67,7 +68,9 @@
 <div class="sub-header">
   <div class="wrap">
     <div class="sub-header__flex flex">
-      <p class="sub-header__text">現在のレビュー数<span>0</span>件</p>
+      <p class="sub-header__text">
+        現在のレビュー数<span><%= get_all_review %></span>件
+      </p>
       <%= link_to '', class: 'sub-header__link' do %> 無料登録&レビューで<br />100ポイント
       <% end %>
     </div>
@@ -88,38 +91,46 @@
       <div class="ranking__flex flex">
         <div class="ranking__flex-item before">
           <h3 class="ranking__flex-heading before">総合評価ランキング</h3>
+          <% rankings = get_score_ranking %>
+          <% rankings.each_with_index do |item, index| %>
           <div class="ranking__item flex">
+            <%= link_to item_path(item.item_id), class: 'ranking__link' do %>
             <div class="ranking__image">
-              <%= link_to image_tag('img_front09.jpg'), '#' %>
+              <%= image_tag Item.find(item.item_id).image.url %>
             </div>
             <div class="ranking__data">
-              <h4 class="ranking__title first">
-                サントリー天然水 特製レモンスカッシュ
+              <h4 class="ranking__title <%= put_class(index) %>">
+                <%= Item.find(item.item_id).name %>
               </h4>
-              <span class="ranking__score">4.60</span>
+              <span class="ranking__score"><%= item.total_star %></span>
               <p class="ranking__text">
-                強炭酸でレモンの酸味が来た後に皮の苦味を感じられる
-                その後はミントの爽快感があり...
+                <%= Item.find(item.item_id).description %>
               </p>
             </div>
+            <% end %>
           </div>
+          <% end %>
         </div>
         <div class="ranking__flex-item after">
           <h3 class="ranking__flex-heading after">レビュー数ランキング</h3>
+          <% item_reviews = get_larger_review %> <% item_reviews.each_with_index do |item, index| %>
           <div class="ranking__item flex">
+            <%= link_to item_path(item.id), class: 'ranking__link' do %>
             <div class="ranking__image">
-              <%= link_to image_tag('img_front14.jpg'), '#' %>
+              <%= image_tag item.image.url %>
             </div>
             <div class="ranking__data">
-              <h4 class="ranking__title first">
-                －196℃ ストロングゼロ 冷凍みかん
+              <h4 class="ranking__title <%= put_class(index) %>">
+                <%= item.name %>
               </h4>
-              <span class="ranking__score">3.86</span>
+              <span class="ranking__score"><%= item.reviews.size %>件のレビュー</span>
               <p class="ranking__text">
-                みかんやオレンジではなく冷凍みかんというところが気になって購入しました。アルコール度...
+                <%= item.description %>
               </p>
             </div>
+            <% end %>
           </div>
+          <% end %>
         </div>
       </div>
     </section>
@@ -156,7 +167,4 @@
 <%= render partial: 'shared/footer' %>
 
 <!-- slick -->
-<script
-  type="text/javascript"
-  src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

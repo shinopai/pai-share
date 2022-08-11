@@ -103,3 +103,9 @@ gem 'kaminari', '~> 0.17.0'
 
 # make rails console more comfortable
 gem 'pry-rails'
+
+# localizing into japanese
+gem 'rails-i18n'
+
+# search function
+gem 'ransack'

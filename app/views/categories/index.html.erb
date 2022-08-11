@@ -1,0 +1,25 @@
+<!-- page title -->
+<%= render partial: 'shared/page_title', locals: { page_title:
+'カテゴリー一覧' } %>
+
+<!-- header -->
+<%= render partial: 'shared/header' %>
+
+<!--main -->
+<main class="main">
+  <div class="wrap">
+    <div class="all-cats">
+      <h2 class="all-cats__heading">カテゴリー一覧</h2>
+      <div class="all-cats__inner flex">
+        <% @categories.each do |cat| %>
+        <%= link_to category_list_path(cat) do %>
+        <h3 class="all-cats__title"><%= cat.name %></h3>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- footer -->
+<%= render partial: 'shared/footer' %>

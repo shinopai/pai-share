@@ -5,6 +5,9 @@
 <!-- header -->
 <%= render partial: 'shared/header' %>
 
+<!-- flash message -->
+<%= render partial: 'shared/flash_message' %>
+
 <!--main -->
 <main class="main">
   <div class="wrap">
@@ -17,7 +20,7 @@
           <div class="profile__numbers flex">
             <div class="flex">
               <div>
-                <span class="profile__number">334</span>
+                <span class="profile__number"><%= @user.reviews.size %></span>
                 <span class="profile__ruby">レビュー</span>
               </div>
               <div>
@@ -25,11 +28,13 @@
                 <span class="profile__ruby">フォロー</span>
               </div>
               <div>
-                <span class="profile__number">1</span>
+                <span class="profile__number">0</span>
                 <span class="profile__ruby">フォロワー</span>
               </div>
             </div>
+            <% unless @user == current_user %>
             <div class="profile__button">フォローする</div>
+            <% end %>
           </div>
         </div>
         <div>
@@ -43,9 +48,58 @@
       <div class="profile--after">
         <h3 class="profile__heading active">レビュー</h3>
         <h3 class="profile__heading">お気に入り商品</h3>
-        <figure class="profile__image">
-          <%= image_tag 'img_item01.png' %>
-        </figure>
+        <div class="profile-review__wrap">
+          <% if is_exists_user_review(@user.id) %> <% @user.reviews.each do
+        |review| %>
+          <div class="profile-review">
+            <div class="profile-review__upper flex">
+              <div class="profile-review__image--item">
+                <%= image_tag review.item.image.url %>
+              </div>
+              <div class="profile-review__data">
+                <h4 class="profile-review__name">
+                  <%= link_to review.item.name, item_path(review.item.id)
+                %>
+                </h4>
+                <span class="profile-review__label">
+                  <%= link_to review.item.category.name, category_list_path(review.item.category.id) %>
+                </span>
+                <p class="profile-review__number">
+                  <%= get_number_of_review(review.item.id) %>件のレビュー
+                </p>
+              </div>
+            </div>
+            <div class="item-review__lower">
+              <p class="item-review__text"><%= review.body %></p>
+              <p class="item-review__date">
+                <%= show_datetime(review.created_at) %>
+              </p>
+            </div>
+          </div>
+          <% end %> <% else %>
+          <figure class="profile__image">
+            <%= image_tag 'img_item01.png' %>
+          </figure>
+          <% end %>
+        </div>
+        <% if is_exists_user_favorite(@user.id) %>
+        <div class="profile-favorite__wrap flex hidden">
+          <% @user.favorites.each do |favorite| %>
+          <%= link_to item_path(favorite.item.id), class: 'profile-favorite__link' do %>
+          <figure class="profile-favorite__image">
+            <%= image_tag favorite.item.image.url %>
+            <figcaption>
+              <%= favorite.item.name %>
+            </figcaption>
+          </figure>
+          <% end %>
+          <% end %>
+          <% else %>
+          <figure class="profile__image">
+            <%= image_tag 'img_item01.png' %>
+          </figure>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

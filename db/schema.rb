@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_05_113545) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_11_011234) do
   create_table "ages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", default: "", null: false
     t.datetime "created_at", null: false
@@ -21,6 +21,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_113545) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_favorites_on_item_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "genders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -46,6 +55,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_113545) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "body", null: false
+    t.integer "star", null: false
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_reviews_on_item_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
@@ -67,7 +87,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_113545) do
     t.index ["residence_id"], name: "index_users_on_residence_id"
   end
 
+  add_foreign_key "favorites", "items"
+  add_foreign_key "favorites", "users"
   add_foreign_key "items", "categories"
+  add_foreign_key "reviews", "items"
+  add_foreign_key "reviews", "users"
   add_foreign_key "users", "ages"
   add_foreign_key "users", "genders"
   add_foreign_key "users", "residences"

@@ -22,32 +22,41 @@ require 'faker'
 # ])
 # end
 
-arr = [
-  'img_item01.jpg',
-  'img_item02.jpg',
-  'img_item03.jpg',
-  'img_item04.jpg',
-  'img_item05.jpg',
-  'img_item06.jpg',
-  'img_item07.jpg',
-  'img_item08.jpg',
-  'img_item09.jpg',
-  'img_item10.jpg',
-  'img_item11.jpg',
-  'img_item12.jpg',
-  'img_item13.jpg',
-  'img_item14.jpg',
-  'img_item15.jpg',
-  'img_item16.jpg',
-  'img_item17.jpg'
-]
+# arr = [
+#   'img_item01.jpg',
+#   'img_item02.jpg',
+#   'img_item03.jpg',
+#   'img_item04.jpg',
+#   'img_item05.jpg',
+#   'img_item06.jpg',
+#   'img_item07.jpg',
+#   'img_item08.jpg',
+#   'img_item09.jpg',
+#   'img_item10.jpg',
+#   'img_item11.jpg',
+#   'img_item12.jpg',
+#   'img_item13.jpg',
+#   'img_item14.jpg',
+#   'img_item15.jpg',
+#   'img_item16.jpg',
+#   'img_item17.jpg'
+# ]
 
-500.times do
-  Item.create!([
-    name: Faker::Name.unique.name,
-    description: Faker::Lorem.paragraph,
-    image: File.open("./public/images/#{arr[rand(0..arr.size - 1)]}"),
-    release_date: Faker::Date.between(from: '2015-09-23', to: '2022-08-07'),
-    category_id: rand(1..Category.count)
-  ])
+# 500.times do
+#   Item.create!([
+#     name: Faker::Name.unique.name,
+#     description: Faker::Lorem.paragraph,
+#     image: File.open("./public/images/#{arr[rand(0..arr.size - 1)]}"),
+#     release_date: Faker::Date.between(from: '2015-09-23', to: '2022-08-07'),
+#     category_id: rand(1..Category.count)
+#   ])
+# end
+
+200.times do
+Review.create!([
+  body: Faker::Lorem.paragraph,
+  star: rand(1..5),
+  user_id: rand(1..User.count),
+  item_id: rand(1..Item.count)
+])
 end

@@ -1,0 +1,38 @@
+<!-- page title -->
+<%= render partial: 'shared/page_title', locals: { page_title:
+'新規レビュー投稿' } %>
+
+<!-- header -->
+<%= render partial: 'shared/header' %>
+
+<!--main -->
+<main class="main">
+  <div class="wrap">
+    <div class="review flex">
+      <figure class="review__image">
+        <% if @item.image? %> <%= image_tag @item.image.url %> <% end %>
+      </figure>
+      <div class="review__item--after">
+        <h2 class="review__heading"><%= @item.name %>の新規レビュー</h2>
+        <%= form_with model: @review, url: add_review_path(@item), class:
+        'review__form' do |review| %> <%= render "shared/error_messages",
+        resource: @review %>
+        <div class="review__form-item">
+          <%= review.label :star, '評価', class: 'review__label' %> <%=
+          review.number_field :star, min: 0, max: 5, class: 'review__number' %>
+        </div>
+        <div class="review__form-item">
+          <%= review.label :body, '内容', class: 'review__label' %> <%=
+          review.text_area :body, rows: 10, class: 'review__textarea' %>
+        </div>
+        <div class="review__form-item">
+          <%= review.submit 'レビューする', class: 'review__submit' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- footer -->
+<%= render partial: 'shared/footer' %>

@@ -8,12 +8,13 @@ $(function(){
   })
 
   // drawer
-  headerIcon = $('.header__icon');
-  drawerOverlay = $('.drawer__overlay');
-  drawerInner = $('.drawer__inner');
+  var headerIcon = $('.header__icon');
+  var drawerOverlay = $('.drawer__overlay');
+  var drawerInner = $('.drawer__inner');
 
   headerIcon.click(
-      function () {
+      function (e) {
+        e.preventDefault();
         if($(this).hasClass('close')){
           drawerInner.animate({'left':'-252px'},500);
           drawerOverlay.css({
@@ -29,4 +30,23 @@ $(function(){
         }
       }
   )
+
+  // search form
+  var searchForm = $('.search-form');
+
+  $('.header__item--second').click(function(){
+    if(searchForm.hasClass('active')){
+      searchForm.animate({'top':'0'},500);
+      searchForm.removeClass('active');
+    }else{
+      searchForm.addClass('active');
+      searchForm.animate({'top':'80px'},500);
+    }
+  })
+  $('.search-form__text').click(function(){
+      searchForm.animate({'top':'0'},500);
+      searchForm.removeClass('active');
+  })
+
+  // review & favorite
 })

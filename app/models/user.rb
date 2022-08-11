@@ -17,4 +17,7 @@ class User < ApplicationRecord
   belongs_to :age
   belongs_to :gender
   belongs_to :residence
+  has_many :reviews
+  has_many :favorites
+  has_many :items, through: :favorites
 end

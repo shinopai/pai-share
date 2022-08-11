@@ -1,6 +1,5 @@
 <!-- page title -->
-<%= render partial: 'shared/page_title', locals: { page_title:
-'新商品' } %>
+<%= render partial: 'shared/page_title', locals: { page_title: '「' + @search_word + '」の検索結果'} %>
 
 <!-- header -->
 <%= render partial: 'shared/header' %>
@@ -9,7 +8,7 @@
 <main class="main">
   <div class="wrap">
     <div class="items flex">
-      <% @items.each do |item| %>
+      <% @result.each do |item| %>
       <div class="items__item">
         <%= link_to item_path(item) do %>
         <div class="items__image">
@@ -22,7 +21,7 @@
       </div>
       <% end %>
     </div>
-    <%= paginate @items %>
+    <%= paginate @result %>
   </div>
 </main>
 

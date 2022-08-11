@@ -4,3 +4,6 @@
 
 // jquery entry file
 require('./main.js');
+
+// vue entry file
+// require('./vue.js');

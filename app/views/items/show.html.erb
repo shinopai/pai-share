@@ -5,6 +5,9 @@
 <!-- header -->
 <%= render partial: 'shared/header' %>
 
+<!-- flash -->
+<%= render partial: 'shared/flash_message' %>
+
 <!--main -->
 <main class="main">
   <div class="wrap">
@@ -14,24 +17,52 @@
           <div class="item-dtl__image--item">
             <% if @item.image? %> <%= image_tag @item.image.url %> <% end %>
           </div>
+          <% if is_exists_favorite(@item) %>
+          <%= button_to favorite_item_remove_path(@item), class: 'item-dtl__submit' do %>
+          <i class="fas fa-heart item-dtl__icon red" title="お気に入り登録済"></i>
+          <% end %>
+          <% else %>
+          <%= button_to favorite_item_path(@item), class: 'item-dtl__submit' do %>
           <i class="fas fa-heart item-dtl__icon"></i>
+          <% end %>
+          <% end %>
         </div>
         <div>
           <%= link_to category_list_path(@item.category.id) do %>
           <span class="item-dtl__label"><%= @item.category.name %></span>
           <% end %>
-          <span class="item-dtl__date"
-            >登録日:&nbsp;<%= @item.created_at.strftime('%Y.%m.%d') %></span
-          >
+          <span class="item-dtl__date">登録日:&nbsp;<%= @item.created_at.strftime('%Y.%m.%d') %></span>
         </div>
         <h3 class="item-dtl__title"><%= @item.name %></h3>
-        <%= link_to 'レビューする', '#', class: 'item-dtl__link' %>
+        <% if user_signed_in? && !is_exists_current_user_review(@item.id) %> <%= link_to 'レビューする', show_review_form_path(@item), class: 'item-dtl__link' %>
+        <% end %>
       </div>
       <div class="item-dtl--after">
-        <h3 class="item-dtl__heading">0件のレビュー</h3>
+        <h3 class="item-dtl__heading"><%= @item.reviews.size %>件のレビュー</h3>
+        <% if is_exists_review(@item.id) %>
+        <% @item.reviews.each do |review| %>
+        <div class="item-review">
+          <div class="item-review__upper flex">
+            <div class="item-review__image--user">
+              <%= image_tag review.user.image.url %>
+            </div>
+            <div class="item-review__data">
+              <p class="item-review__name"><%= link_to review.user.name, user_profile_path(review.user.id) %>さん</p>
+              <p class="item-review__dtl"><%= review.user.age.title %>/<%= review.user.gender.title %>/<%= review.user.residence.name %></p>
+              <p class="item-review__score"><%= show_stars(review.star) %><span><%= review.star.to_f %></span></p>
+            </div>
+          </div>
+          <div class="item-review__lower">
+            <p class="item-review__text"><%= review.body %></p>
+            <p class="item-review__date"><%= show_datetime(review.created_at) %></p>
+          </div>
+        </div>
+        <% end %>
+        <% else %>
         <figure class="item-dtl__image">
           <%= image_tag 'img_item01.png' %>
         </figure>
+        <% end %>
       </div>
     </div>
   </div>
