@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_11_011234) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_12_001830) do
   create_table "ages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", default: "", null: false
     t.datetime "created_at", null: false
@@ -30,6 +30,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_11_011234) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_favorites_on_item_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "follows", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
   create_table "genders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -89,6 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_11_011234) do
 
   add_foreign_key "favorites", "items"
   add_foreign_key "favorites", "users"
+  add_foreign_key "follows", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "reviews", "items"
   add_foreign_key "reviews", "users"

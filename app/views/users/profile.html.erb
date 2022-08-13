@@ -24,16 +24,20 @@
                 <span class="profile__ruby">レビュー</span>
               </div>
               <div>
-                <span class="profile__number">0</span>
+                <span class="profile__number"><%= get_number_of_follow(@user) %></span>
                 <span class="profile__ruby">フォロー</span>
               </div>
               <div>
-                <span class="profile__number">0</span>
+                <span class="profile__number"><%= get_number_of_follower(@user) %></span>
                 <span class="profile__ruby">フォロワー</span>
               </div>
             </div>
             <% unless @user == current_user %>
-            <div class="profile__button">フォローする</div>
+            <% if is_followed(@user.id) %>
+            <%= button_to 'フォロー解除', unfollow_path(@user), class: 'profile__button red' %>
+            <% else %>
+            <%= button_to 'フォローする', follow_path(@user), class: 'profile__button' %>
+            <% end %>
             <% end %>
           </div>
         </div>

@@ -33,3 +33,10 @@
   width: 25px;
   height: 25px;
 }
+
+/* media query */
+@mixin mq($breakpoint) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}

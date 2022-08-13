@@ -11,12 +11,17 @@ $(function(){
   var headerIcon = $('.header__icon');
   var drawerOverlay = $('.drawer__overlay');
   var drawerInner = $('.drawer__inner');
-
+  var deviceWidth = $(window).width();
+  console.log(deviceWidth);
   headerIcon.click(
       function (e) {
         e.preventDefault();
         if($(this).hasClass('close')){
-          drawerInner.animate({'left':'-252px'},500);
+          if(deviceWidth <= 768){
+          drawerInner.animate({'left':'-353px'},500);
+          }else{
+            drawerInner.animate({'left':'-285px'},500);
+          }
           drawerOverlay.css({
             'display': 'none'
           })

@@ -1,4 +1,5 @@
 @import "_basic";
+@import "_breakpoints";
 @import "_mixin";
 
 /* header */
@@ -31,6 +32,15 @@
   &__menu--after {
     align-items: center;
     gap: 20px;
+    @include mq(sm) {
+      display: none;
+    }
+    &.sp {
+      display: none;
+      @include mq(sm) {
+        display: flex;
+      }
+    }
   }
   &__item--first {
     font-size: 1.2rem;
@@ -49,6 +59,12 @@
       vertical-align: -6px;
       margin-right: 5px;
     }
+    &.sp {
+      width: 35px;
+      &::before {
+        content: none;
+      }
+    }
   }
   &__item--second {
     font-size: 1.2rem;
@@ -66,6 +82,12 @@
     }
     &:hover {
       opacity: 0.7;
+    }
+    &.sp {
+      width: 35px;
+      &::before {
+        content: none;
+      }
     }
   }
   &__link {
@@ -91,6 +113,11 @@
   height: 60px;
   z-index: 1;
   background-color: #f2f2f2;
+  .wrap {
+    @include mq(sm) {
+      height: 100%;
+    }
+  }
   &__inner {
     justify-content: space-around;
     align-items: center;
@@ -103,11 +130,20 @@
       font-weight: 900;
       color: #ececec;
       position: absolute;
-      left: 40px;
+      left: 4%;
+      @include mq(sm) {
+        content: none;
+      }
+    }
+    @include mq(sm) {
+      height: 100%;
     }
   }
   &__form {
     width: 80%;
+    @include mq(sm) {
+      width: 90%;
+    }
   }
   &__textfield {
     width: 80%;
@@ -115,6 +151,16 @@
     border-radius: 5px;
     font-size: 1.2rem;
     border: none;
+    @include mq(sm) {
+      display: none;
+    }
+    &.sp {
+      display: none;
+      padding: 15px 20px;
+      @include mq(sm) {
+        display: inline-block;
+      }
+    }
   }
   &__submit {
     font-size: 1.6rem;
@@ -129,10 +175,28 @@
     &:hover {
       opacity: 0.7;
     }
+    @include mq(md) {
+      width: 13%;
+    }
+    @include mq(sm) {
+      display: none;
+    }
+    &.sp {
+      display: none;
+      .fas {
+        font-size: 1.4rem;
+      }
+      @include mq(sm) {
+        display: inline-block;
+      }
+    }
   }
   &__text {
     font-size: 1.6rem;
     cursor: pointer;
+    @include mq(sm) {
+      display: none;
+    }
   }
 }
 
@@ -147,6 +211,9 @@
   &__nav {
     justify-content: center;
     gap: 15px;
+    @include mq(sm) {
+      flex-wrap: wrap;
+    }
   }
   &__heading {
     font-size: 1.2rem;
@@ -197,10 +264,14 @@
   &__inner {
     width: 20%;
     position: fixed;
-    left: -252px;
+    left: -285px;
     overflow-y: scroll;
     height: 100vh;
     z-index: 10;
+    @include mq(sm) {
+      width: 50%;
+      left: -353px;
+    }
   }
   &__list {
     background-color: #fff;
@@ -333,6 +404,9 @@
       vertical-align: -6px;
       margin-right: 5px;
     }
+    @include mq(sm) {
+      margin: 0 auto;
+    }
   }
   &__link {
     font-size: 1.4rem;
@@ -341,6 +415,9 @@
     padding: 10px 15px;
     text-align: center;
     border-radius: 10px;
+    @include mq(sm) {
+      display: none;
+    }
   }
 }
 
@@ -348,6 +425,9 @@
 .main {
   background: url("bg_gray.png") repeat;
   padding-top: 80px;
+  @include mq(sm) {
+    padding-top: 40px;
+  }
 }
 
 /* ranking */
@@ -358,12 +438,18 @@
   }
   &__flex {
     gap: 30px;
+    @include mq(sm) {
+      flex-direction: column;
+    }
   }
   &__flex-item {
     width: 50%;
     background-color: #fff;
     padding: 20px 10px;
     border-radius: 10px;
+    @include mq(sm) {
+      width: 100%;
+    }
   }
   &__flex-heading {
     @include section-heading();
@@ -463,6 +549,9 @@
     a {
       font-size: 1.8rem;
       color: $basic-color;
+      @include mq(sm) {
+        font-size: min(4.06vw, 1.8rem);
+      }
     }
     &::before {
       font-family: "Font Awesome 5 Free";
@@ -496,6 +585,9 @@
     border-radius: 5px;
     padding: 10px;
   }
+  @include mq(sm) {
+    margin-top: 60px;
+  }
 }
 
 /* banner */
@@ -514,6 +606,9 @@
     width: 19%;
     padding: 10px;
     border: 1px solid #b8b8b8;
+    @include mq(sm) {
+      width: 45%;
+    }
   }
   &__image {
     width: 60%;
@@ -530,6 +625,10 @@
     color: #808080;
     float: right;
     font-size: 1.8rem;
+  }
+  @include mq(sm) {
+    flex-wrap: wrap;
+    margin-top: 60px;
   }
 }
 
@@ -567,6 +666,10 @@
     background-color: #fff;
     padding: 20px;
     gap: 15px;
+    @include mq(sm) {
+      width: 100%;
+      margin-top: 20px;
+    }
   }
   &__submit {
     background-color: transparent;
@@ -607,11 +710,19 @@
     &:hover {
       opacity: 0.7;
     }
+    @include mq(sm) {
+      width: 80%;
+      max-width: 450px;
+      margin: 0 auto;
+    }
   }
   &--after {
     width: 60%;
     background-color: #fff;
     padding: 20px;
+    @include mq(sm) {
+      width: 100%;
+    }
   }
   &__heading {
     font-size: 1.2rem;
@@ -623,6 +734,17 @@
   &__image {
     width: 60%;
     margin: 50px auto 0;
+    &--item {
+      img {
+        @include mq(sm) {
+          max-width: 300px;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+  @include mq(sm) {
+    flex-direction: column;
   }
 }
 .item-review {
@@ -676,9 +798,15 @@
     background-color: #fff;
     padding: 20px;
     gap: 15px;
+    @include mq(sm) {
+      width: 100%;
+    }
   }
   &__upper {
     justify-content: space-around;
+    @include mq(sm) {
+      max-width: 300px;
+    }
   }
   &__image--user {
     width: 30%;
@@ -706,6 +834,15 @@
     padding: 10px;
     text-align: center;
     cursor: pointer;
+    width: 100%;
+    border: none;
+    &.red {
+      background-color: #e61a1a;
+      &::before {
+        font-family: "Font Awesome 5 Free";
+        content: "\f235";
+      }
+    }
     &::before {
       font-family: "Font Awesome 5 Free";
       content: "\f234";
@@ -723,6 +860,9 @@
     width: 60%;
     background-color: #fff;
     padding: 20px;
+    @include mq(sm) {
+      width: 100%;
+    }
   }
   &__heading {
     width: 49%;
@@ -740,6 +880,10 @@
   &__image {
     width: 60%;
     margin: 50px auto 0;
+  }
+  @include mq(sm) {
+    flex-direction: column;
+    margin-top: 30px;
   }
 }
 .profile-review {
@@ -830,6 +974,13 @@
   gap: 20px;
   &__image {
     width: 30%;
+    @include mq(sm) {
+      width: 100%;
+      img {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+    }
   }
   &__item--after {
     flex-grow: 1;
@@ -856,6 +1007,10 @@
     resize: none;
     padding: 10px;
     font-size: 1.4rem;
+    @include mq(sm) {
+      width: 100%;
+      max-width: 500px;
+    }
   }
   &__submit {
     background-color: $basic-color;
@@ -870,5 +1025,15 @@
     &:hover {
       opacity: 0.7;
     }
+    @include mq(sm) {
+      width: 100%;
+      max-width: 450px;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+  @include mq(sm) {
+    margin-top: 60px;
+    flex-direction: column;
   }
 }

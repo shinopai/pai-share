@@ -23,6 +23,15 @@
         </li>
         <% end %>
       </ul>
+      <ul class="header__menu--after sp">
+        <li class="header__item--first sp"><%= link_to categories_path do  %>
+          <%= image_tag 'ico_cat_sp.gif' %>
+          <% end %>
+        </li>
+        <li class="header__item--second sp">
+          <%= image_tag 'ico_search_sp.gif' %>
+        </li>
+      </ul>
     </nav>
   </div>
 </header>
@@ -32,8 +41,12 @@
   <div class="wrap">
     <div class="search-form__inner flex">
       <%= search_form_for @q_header, url: search_items_path, class:
-      'search-form__form' do |search| %> <%= search.search_field :name_or_description_gt, class: 'search-form__textfield' %> <%=
-      search.submit '検索', class: 'search-form__submit' %> <% end %>
+      'search-form__form' do |search| %> <%= search.search_field :name_or_description_gt, class: 'search-form__textfield' %>
+      <%= search.search_field :name_or_description_gt, class: 'search-form__textfield sp', placeholder: 'キーワードでさがす' %>
+      <%= search.submit '検索', class: 'search-form__submit' %>
+      <%= button_tag sanitize('<i class="fas fa-search"></i>'), :type => "submit",
+    :class =>"search-form__submit sp fas" %>
+      <% end %>
       <p class="search-form__text">キャンセル</p>
     </div>
   </div>

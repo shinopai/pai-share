@@ -34,10 +34,15 @@ Rails.application.routes.draw do
   get '/review/form/:id', to: 'reviews#show_form', as: :show_review_form
 
   # add new review
-  post 'review/add/:id', to: 'reviews#add_review', as: :add_review
+  post '/review/add/:id', to: 'reviews#add_review', as: :add_review
 
   # favorite item
-  post 'favorite/item/:id', to: 'favorites#add_item', as: :favorite_item
+  post '/favorite/item/:id', to: 'favorites#add_item', as: :favorite_item
   # remove item form favorite
-  post 'favorite/item/:id/remove', to: 'favorites#remove_item', as: :favorite_item_remove
+  post '/favorite/item/:id/remove', to: 'favorites#remove_item', as: :favorite_item_remove
+
+  # follow user
+  post '/follow/user/:follower_id', to: 'follows#follow_user', as: :follow
+  # unfollow user
+  post '/follow/user/:follower_id/remove', to: 'follows#unfollow_user', as: :unfollow
 end

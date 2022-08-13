@@ -87,4 +87,17 @@ module HomeHelper
     user = current_user
     user.favorites.where(item_id: item_id).any?
   end
+
+  def is_followed(user_id)
+    user = current_user
+    user.follows.where(follower_id: user_id).any?
+  end
+
+  def get_number_of_follow(user_id)
+    Follow.where(user_id: user_id).size
+  end
+
+  def get_number_of_follower(user_id)
+    Follow.where(follower_id: user_id).size
+  end
 end
