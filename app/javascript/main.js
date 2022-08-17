@@ -13,7 +13,7 @@ $(function(){
   var drawerInner = $('.drawer__inner');
   var deviceWidth = $(window).width();
   console.log(deviceWidth);
-  headerIcon.click(
+  headerIcon.on('click',
       function (e) {
         e.preventDefault();
         if($(this).hasClass('close')){
