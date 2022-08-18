@@ -26,13 +26,13 @@ end
 
 ages.size.times do |i|
   Age.create([
-    'name' => ages[i]
+    'title' => ages[i]
   ])
 end
 
 genders.size.times do |i|
   Gender.create([
-    'name' => genders[i]
+    'title' => genders[i]
   ])
 end
 
