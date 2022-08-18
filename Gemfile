@@ -109,3 +109,9 @@ gem 'rails-i18n'
 
 # search function
 gem 'ransack'
+
+# save files to external storage
+gem 'fog-aws'
+
+# manage environment variables
+gem 'dotenv-rails'
