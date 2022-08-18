@@ -549,9 +549,9 @@
     a {
       font-size: 1.8rem;
       color: $basic-color;
-      @include mq(sm) {
-        font-size: unquote("min(4.06vw, 1.8rem)");
-      }
+      // @include mq(sm) {
+      //   font-size: min(4.06vw, 1.8rem);
+      // }
     }
     &::before {
       font-family: "Font Awesome 5 Free";
