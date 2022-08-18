@@ -5,48 +5,8 @@
 <!-- header -->
 <%= render partial: 'shared/header' %>
 
-<!-- side menu -->
-<div class="drawer__overlay"></div>
-<div class="drawer">
-  <div class="drawer__inner">
-    <ul class="drawer__list">
-      <li class="drawer__menu first">
-        <%= link_to image_tag('bnr_drawer.jpg') %>
-      </li>
-      <li class="drawer__menu"><%= link_to 'トップ', root_path %></li>
-      <% if user_signed_in? %>
-      <li class="drawer__menu">
-        <%= link_to current_user.name + 'さん', user_profile_path(current_user)
-        %>
-      </li>
-      <% else %>
-      <li class="drawer__menu">
-        <%= link_to 'ログイン・新規登録', new_user_session_path %>
-      </li>
-      <% end %>
-      <li class="drawer__menu"><%= link_to '新商品', items_path %></li>
-      <li class="drawer__menu"><%= link_to '新着レビュー', '#' %></li>
-      <% if user_signed_in? %>
-      <li class="drawer__menu"><%= link_to 'お気に入り', '#' %></li>
-      <li class="drawer__menu"><%= link_to 'フォロー会員', '#' %></li>
-      <% end %>
-      <li class="drawer__menu small"><%= link_to 'パイビューとは', '#' %></li>
-      <li class="drawer__menu"><%= link_to 'カテゴリー一覧', '#' %></li>
-      <li class="drawer__menu"><%= link_to 'グッドレビュー', '#' %></li>
-      <li class="drawer__menu"><%= link_to 'ピックアップ', '#' %></li>
-      <li class="drawer__menu"><%= link_to 'キャンペーン', '#' %></li>
-      <li class="drawer__menu"><%= link_to 'コラム', '#' %></li>
-      <li class="drawer__menu"><%= link_to '運営会社', '#' %></li>
-      <li class="drawer__menu">
-        <%= link_to '個人情報の取り扱いについて', '#' %>
-      </li>
-      <li class="drawer__menu"><%= link_to '利用規約', '#' %></li>
-      <li class="drawer__menu"><%= link_to 'サイトマップ', '#' %></li>
-      <li class="drawer__menu"><%= link_to 'よくある質問', '#' %></li>
-      <li class="drawer__menu"><%= link_to '問い合わせ', '#' %></li>
-    </ul>
-  </div>
-</div>
+<!-- header -->
+<%= render partial: 'shared/drawer_menu' %>
 
 <!-- slider -->
 <div class="slider__outer wrap">
@@ -168,3 +128,4 @@
 
 <!-- slick -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<%= javascript_include_tag "slick", "data-turbo-track": "reload", defer: true %>
